@@ -18,7 +18,6 @@
  *
 */
 
-const navbarList = document.getElementById('navbar__list');
 const sections = document.querySelectorAll('section');
 
 
@@ -37,6 +36,7 @@ const sections = document.querySelectorAll('section');
 
 // build the nav
 function buildNav() {
+    const navbarList = document.getElementById('navbar__list');
     sections.forEach(function (section) {
         const newLi = document.createElement('li');
         const newA = document.createElement('a');
@@ -62,10 +62,11 @@ function addActiveClass() {
         function removeClass() {
             const activeClass = document.getElementsByClassName('your-active-class');
             activeClass[0].classList.remove('your-active-class');
+
         }
 
         function addClass() {
-            removeClass()
+            removeClass();
             sections[i].scrollIntoView();
             sections[i].classList.add('your-active-class');
         }
@@ -74,10 +75,7 @@ function addActiveClass() {
 
 
 // Scroll to anchor ID using scrollTO event
-function scrollTo() {
-    //console.log(window.pageYOffset);
 
-}
 
 /**
  * End Main Functions
@@ -87,22 +85,14 @@ function scrollTo() {
 
 
 // Build menu
-const t0 = performance.now();
 setTimeout(buildNav, 0);
 clearTimeout(buildNav, 0);
-const t1 = performance.now();
-console.log(`Time to execute for loop for make a navbar is ${(t1 - t0).toFixed(4)}`);
 
 // Scroll to section on link click
-const t2 = performance.now();
-window.addEventListener('scroll', scrollTo, true);
-// window.removeEventListener('scroll', scrollTo, false);
-const t3 = performance.now();
-console.log(`Time to execute scrolling to section on link click ${(t3 - t2).toFixed(4)}`);
 
 // Set sections as active
-const t4 = performance.now();
 setTimeout(addActiveClass, 50);
 clearTimeout(addActiveClass, 50);
-const t5 = performance.now();
-console.log(`Time to execute adding active class is ${(t5 - t4).toFixed(4)}`);
+
+// window.addEventListener('scroll', scrollTo, true);
+// window.removeEventListener('scroll', scrollTo, false);
