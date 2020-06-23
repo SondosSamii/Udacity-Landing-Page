@@ -3,6 +3,12 @@ JavaScript and The DOM Project
 
 [Landing Page](https://github.com/udacity/fend/tree/refresh-2019/projects/landing-page) Starter Code from Udacity
 
+It is our Landing Page
+It can added sections dynamically with JS
+You can check our JS file to show the functions
+The project is already added to GitHub Pages
+https://sondossamii.github.io/Udacity-Landing-Page/
+
 
 [![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/dashboard?id=SondosSamii_Udacity-Landing-Page)
 
