@@ -27,6 +27,22 @@ const sections = document.querySelectorAll('section');
  *
 */
 
+// I take this method from a reference
+// https://gomakethings.com/how-to-test-if-an-element-is-in-the-viewport-with-vanilla-javascript/
+var isInViewport = function (elem) {
+    var bounding = elem.getBoundingClientRect();
+    return (
+        bounding.top >= 0 &&
+        bounding.left >= 0 &&
+        bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+}
+
+function removeClass(i) {
+    const activeClass = document.getElementsByClassName('your-active-class');
+    activeClass[i].classList.remove('your-active-class');
+}
 
 /**
  * End Helper Functions
@@ -59,14 +75,8 @@ function addActiveClass() {
         navLink.addEventListener('click', addClass, true);
         navLink.removeEventListener('click', addClass, false);
 
-        function removeClass() {
-            const activeClass = document.getElementsByClassName('your-active-class');
-            activeClass[0].classList.remove('your-active-class');
-
-        }
-
         function addClass() {
-            removeClass();
+            removeClass(0);
             sections[i].scrollIntoView();
             sections[i].classList.add('your-active-class');
         }
@@ -75,6 +85,18 @@ function addActiveClass() {
 
 
 // Scroll to anchor ID using scrollTO event
+function scrollTo() {
+    sections.forEach(function (section, i) {
+        window.addEventListener('scroll', addClassIfInViewport, true);
+        window.removeEventListener('scroll', addClassIfInViewport, false);
+        function addClassIfInViewport() {
+            if (isInViewport(section)) {
+                removeClass(0);
+                section.classList.add('your-active-class');
+            }
+        }
+    })
+}
 
 
 /**
@@ -89,10 +111,8 @@ setTimeout(buildNav, 0);
 clearTimeout(buildNav, 0);
 
 // Scroll to section on link click
+scrollTo();
 
 // Set sections as active
 setTimeout(addActiveClass, 50);
 clearTimeout(addActiveClass, 50);
-
-// window.addEventListener('scroll', scrollTo, true);
-// window.removeEventListener('scroll', scrollTo, false);
