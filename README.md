@@ -15,6 +15,9 @@ The project is already added to GitHub Pages
 https://sondossamii.github.io/Udacity-Landing-Page/
 
 
+I have used MDN as a refrence
+
+
 I scanned it using SonarCloud Tool
 
 [![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/dashboard?id=SondosSamii_Udacity-Landing-Page)
