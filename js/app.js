@@ -39,9 +39,9 @@ var isInViewport = function (elem) {
     );
 }
 
-function removeClass(i) {
-    const activeClass = document.getElementsByClassName('your-active-class');
-    activeClass[i].classList.remove('your-active-class');
+let removeClass = function (i) {
+    const yourActiveClass = document.getElementsByClassName('your-active-class');
+    yourActiveClass[i].classList.remove('your-active-class');
 }
 
 /**
@@ -73,10 +73,15 @@ function addActiveClass() {
         navLink.setAttribute('href', `#${sectionId}`);
 
         navLink.addEventListener('click', addClass, true);
-        navLink.removeEventListener('click', addClass, false);
+        // navLink.removeEventListener('click', addClass, false);
 
         function addClass() {
-            removeClass(0);
+            const activeClass = document.getElementsByClassName('active');
+            if (activeClass.length > 0) {
+                activeClass[0].classList.remove('active');
+            }
+            navLink.classList.add('active');
+
             sections[i].scrollIntoView();
             sections[i].classList.add('your-active-class');
         }
@@ -89,6 +94,7 @@ function scrollTo() {
     sections.forEach(function (section, i) {
         window.addEventListener('scroll', addClassIfInViewport, true);
         window.removeEventListener('scroll', addClassIfInViewport, false);
+
         function addClassIfInViewport() {
             if (isInViewport(section)) {
                 removeClass(0);
